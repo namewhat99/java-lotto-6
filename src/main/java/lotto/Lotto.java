@@ -1,14 +1,14 @@
 package lotto;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class Lotto {
     private final List<Integer> numbers;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -17,7 +17,7 @@ public class Lotto {
         }
     }
 
-    private List<Integer> getNumbers(){
+    public List<Integer> getNumbers(){
         return this.numbers;
     }
 
