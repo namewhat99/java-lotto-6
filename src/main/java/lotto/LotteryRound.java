@@ -7,14 +7,17 @@ import java.util.*;
 public class LotteryRound {
 
     private HashMap<Integer, Integer> result = new HashMap<Integer , Integer>(Map.of(0 , 0, 1 , 0 , 2 , 0 , 3 , 0 , 4 , 0 , 5 , 0));
-    private List<Lotto> lotteryInstances;
+    private HashMap<Integer , Integer> reward = new HashMap(Map.of(1 , 200000000 , 2 , 30000000 , 3 , 1500000 , 4 , 500000 , 5 , 50000));
+    private List<Lotto> lotteryInstances = new ArrayList<Lotto>();
     private List<Integer> winningNumber;
     private int bonusNumber;
+    private int round;
     private static final int LOTTERY_LENGTH = 6;
 
     public void startLotteryRound(){
-        int round = Input.getPurchaseAmount();
-        Output.printNumberofRound(round);
+
+        this.round = Input.getPurchaseAmount();
+        Output.printNumberofRound(this.round);
 
         for(int i = 0; i < round; i++) this.createLotteryInstances();
         Output.printLottery(this.lotteryInstances);
@@ -31,6 +34,14 @@ public class LotteryRound {
         }
 
         Output.printResult(this.result);
+        Output.printReturnRate(this.calculateReturnRate());
+    }
+
+    public double calculateReturnRate(){
+        int earn = 0;
+        for(int i = 1; i <= 5; i++) earn += this.reward.get(i) * this.result.get(i);
+
+        return (double) (earn / (1000 * this.round)) * 100;
     }
 
     public void createLotteryInstances(){

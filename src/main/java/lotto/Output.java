@@ -6,7 +6,7 @@ import java.util.List;
 public class Output {
 
     public static void printNumberofRound(int num){
-        System.out.printf("%d개를 구매했습니다." , num);
+        System.out.printf("%d개를 구매했습니다.\n" , num);
     }
 
     public static void printLottery(List<Lotto> lotteryInstances){
@@ -36,5 +36,9 @@ public class Output {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n" , result.get(3));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" , result.get(2));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n" , result.get(1));
+    }
+
+    public static void printReturnRate(double returnRate){
+        System.out.printf("총 수익률은%.1f%%입니다." , returnRate);
     }
 }
